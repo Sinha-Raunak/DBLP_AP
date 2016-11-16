@@ -3,7 +3,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.*;
-
+import java.io.*;
 public class ArticleHandler extends DefaultHandler {
 	
 	boolean bAuthor=false;
@@ -15,12 +15,14 @@ public class ArticleHandler extends DefaultHandler {
 	boolean bNumber=false;
 	boolean bUrl=false;
 	boolean bEE=false;
-	
+	String authorName;
+	boolean resultFound = false;
 	ArrayList<Article> artlist;
 	Article tempart;
 	
-	ArticleHandler()
+	ArticleHandler(String authorName)
 	{
+		this.authorName = authorName; 
 		artlist=new ArrayList<Article>();
 		tempart=new Article();
 	}
@@ -36,7 +38,7 @@ public class ArticleHandler extends DefaultHandler {
 			         //System.out.println("Roll No : " + rollNo);
 			      } else if (qName.equalsIgnoreCase("author")) {
 			         bAuthor = true;
-			      } else if (qName.equalsIgnoreCase("title")) {
+			      } else if (qName.equalsIgnoreCase("title") && resultFound ) {
 			         bTitle = true;
 			      } else if (qName.equalsIgnoreCase("pages")) {
 			         bPages = true;
@@ -65,9 +67,12 @@ public class ArticleHandler extends DefaultHandler {
 			   public void endElement(String uri, 
 			   String localName, String qName) throws SAXException {
 			      if (qName.equalsIgnoreCase("article")) {
-			         System.out.println("End Element :" + qName);
+			         //System.out.println("End Element :" + qName);
 			         artlist.add(tempart);
+			         //TODO call write to file
+			         writetoFile(tempart);
 			         tempart=new Article();
+			         resultFound = false;
 			      }
 			   }
 
@@ -76,12 +81,21 @@ public class ArticleHandler extends DefaultHandler {
 			      int start, int length) throws SAXException {
 			      if(bAuthor)
 			      {
+			    	  System.out.println("No");
+			    	  String temp = new String(ch, start, length);
+			    	  if(this.authorName.equals(temp)) {
+			    		  System.out.println("Yes");
+			    		  resultFound = true;
+			    		  System.out.println("Author name: " + authorName);
+			    		  
+			    	  }
 			    	  tempart.setAuthor(new String(ch,start,length));
 			    	  bAuthor=false;
 			    	  
 			      }
 			      else if(bTitle)
 			      {
+			    	  System.out.println("Title = " + new String(ch, start, length));
 			    	  tempart.setTitle(new String(ch,start,length));
 			    	  bTitle=false;
 			      }
@@ -121,6 +135,35 @@ public class ArticleHandler extends DefaultHandler {
 			    	  bEE=false;
 			      }
 			    	  
+			   }
+			   
+			   
+			   
+			   public void writetoFile(Article a)
+			   {
+				   String auth=a.getAuthor();
+				   String fname=auth.charAt(0)+".ser";
+				   File f=new File(fname);
+				   if(f.exists())
+				   {
+					   try
+						{
+							
+							FileOutputStream ff=new FileOutputStream(fname,true);
+							ObjectOutputStream out=new ObjectOutputStream(ff);
+							
+							out.writeObject(a);
+							
+							out.close();
+							ff.close();	
+							
+						}
+						catch(IOException i)
+						{
+							i.printStackTrace();
+						}
+				   }
+				   
 			   }
 			   
 			   

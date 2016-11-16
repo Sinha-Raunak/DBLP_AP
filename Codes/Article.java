@@ -1,6 +1,7 @@
-
-public class Article {
-	private String author;
+import java.util.*;
+import java.io.*;
+public class Article implements Serializable {
+	private ArrayList<String> author;
 	private String title;
 	private String pages;
 	private String year;
@@ -12,7 +13,7 @@ public class Article {
 	
 	Article()
 	{
-		author=new String();
+		author=new ArrayList<String>();
 		title=new String();
 		pages=new String();
 		year=new String();
@@ -27,7 +28,12 @@ public class Article {
 	
 	public void setAuthor(String str)
 	{
-		author=new String(str);
+		author.add(str);
+	}
+	
+	public String getAuthor()//returns only the first author 
+	{
+		return author.get(0);
 	}
 	
 	public void setTitle(String str)
@@ -69,4 +75,7 @@ public class Article {
 	{
 		ee=new String(str);
 	}
+	
+	//public void toString()
+	
 }
