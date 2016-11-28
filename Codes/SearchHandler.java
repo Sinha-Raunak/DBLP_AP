@@ -111,9 +111,10 @@ public class SearchHandler extends DefaultHandler {
 		    		  if((tempchar.toLowerCase().equals(auth.toLowerCase()) ||(ent!=null && ent.getAuthors().contains(tempchar))))
 			    	  {
 			    		  resultFound=true;
+			    		  tempart.setRefcount(1);
 			    	  }
 	    		  
-		    		  String []temp1=tempchar.split(" ");
+		    		  String []temp1=tempchar.split("[ -]");
 		    		  int count=0;
 		    		  for(String s:authsplit)
 		    		  {
@@ -125,7 +126,7 @@ public class SearchHandler extends DefaultHandler {
 		    				  }
 		    			  }
 		    		  }
-		    		  if(count>0)
+		    		  if(count>0 && tempart.getRefcount()==0)
 		    		  {
 		    			  resultFound=true;
 		    			  tempart.setRefcount(count/tempchar.length());

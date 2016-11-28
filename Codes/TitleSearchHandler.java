@@ -121,7 +121,7 @@ public class TitleSearchHandler extends DefaultHandler{
 		    		  resultFound=true;
 		    	  }
 		     
-	    		  String []temp1=tempchar.split(" ");
+	    		  String []temp1=tempchar.split("[ -]");
 	    		  int count=0;
 	    		  for(String s:titlesplit)
 	    		  {

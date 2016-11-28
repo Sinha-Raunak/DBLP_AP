@@ -24,7 +24,7 @@ public class Initialize {
 		
 		Search s=new Search();
 		
-		ArrayList<Data> d=s.searchAuthorandType("Chin Chen Chang", ent,0);
+		ArrayList<Data> d=s.searchAuthorandType("Cornelis joost van rijsbergen", ent,0);
 		System.out.println("Size="+d.size());
 		
 		
