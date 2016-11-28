@@ -77,7 +77,7 @@ public class TitleSearchHandler extends DefaultHandler{
 	public void endElement(String uri,String localName, String qName) throws SAXException
 	{
 			      
-		if (qName.equalsIgnoreCase("article") ||  qName.equalsIgnoreCase("inproceedings") || qName.equalsIgnoreCase("incollection") || qName.equalsIgnoreCase("phdthesis") ) 
+		if (qName.equalsIgnoreCase("article") ||  qName.equalsIgnoreCase("inproceedings") || qName.equalsIgnoreCase("incollection") || qName.equalsIgnoreCase("phdthesis") || qName.equalsIgnoreCase("proceedings") || qName.equalsIgnoreCase("book")|| qName.equalsIgnoreCase("masterthesis") ) 
 		{
 			 if(resultFound)
 			 {
