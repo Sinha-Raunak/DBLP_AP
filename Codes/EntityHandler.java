@@ -10,10 +10,12 @@ public class EntityHandler extends DefaultHandler {
 	boolean isEntity=false;
 	ArrayList<wwwEntity> entlist;
 	wwwEntity ent;
+	Map<String,String> emap;
 	
 	EntityHandler()
 	{
 		entlist=new ArrayList<wwwEntity>();
+		emap=new HashMap<String,String>();
 		ent=new wwwEntity();
 		tempchar=new String("");
 	}
@@ -76,9 +78,31 @@ public class EntityHandler extends DefaultHandler {
 		tempchar += new String(ch, start, length);
 	}
 			   
+	
+	
+	public void insMap(ArrayList<String>aut)
+	{
+		if(aut.size()>0)
+		{
+			String main=aut.get(0);
+			for(String tm:aut)
+			{
+				if(tm!=null)
+				{
+					emap.put(tm,main);
+				}
+			}
+		}
+	}
+	
+	
 	public ArrayList<wwwEntity> getList()
 	{
 	   return entlist;
 	}
-
+	
+	public Map<String,String> getMap()
+	{
+		return emap;
+	}
 }

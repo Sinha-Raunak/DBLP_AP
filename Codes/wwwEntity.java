@@ -1,6 +1,5 @@
 import java.util.*;
-import java.io.*;
-public class wwwEntity implements Serializable {
+public class wwwEntity  {
 	ArrayList<String> author;
 	
 	wwwEntity()

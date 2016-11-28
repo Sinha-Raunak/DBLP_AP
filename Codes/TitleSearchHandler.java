@@ -20,16 +20,14 @@ public class TitleSearchHandler extends DefaultHandler{
 	Data tempart;
 	String title;
 	String []titlesplit;
-	int type;
 	
-	TitleSearchHandler(String title,int t)
+	TitleSearchHandler(String titles)
 	{
 		artlist=new ArrayList<Data>();
 		tempart=new Data();
 		tempchar=new String("");
-		this.title=title;
-		type=t;
-		titlesplit=title.toLowerCase().split(" ");
+		this.title=titles;
+		titlesplit=title.toLowerCase().split("[ -]");
 		
 		
 	}
@@ -117,15 +115,12 @@ public class TitleSearchHandler extends DefaultHandler{
 	     }
 	     else if(bTitle && isEntity==false)
 	     {
-	    	 if(type==1)
-	    	 {
+	    	 
 		    	  if(tempchar.toLowerCase().equals(title.toLowerCase()))
 		    	  {
 		    		  resultFound=true;
 		    	  }
-		     }
-	    	 else if(type==2)
-	    	 {
+		     
 	    		  String []temp1=tempchar.split(" ");
 	    		  int count=0;
 	    		  for(String s:titlesplit)
@@ -141,9 +136,9 @@ public class TitleSearchHandler extends DefaultHandler{
 	    		  if(count>0)
 	    		  {
 	    			  resultFound=true;
-	    			  tempart.setRefcount(count);
+	    			  tempart.setRefcount(count/tempchar.length());
 	    		  }
-	    	 }
+	    	 
 	    	  tempart.setTitle(tempchar);
 	    	  
 	    	  tempchar=new String("");

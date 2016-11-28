@@ -20,17 +20,15 @@ public class SearchHandler extends DefaultHandler {
 	Data tempart;
 	String auth;
 	wwwEntity ent;
-	int type;
 	String []authsplit;
-	SearchHandler(String auth,wwwEntity ent,int t)
+	SearchHandler(String auth,wwwEntity ent)
 	{
 		artlist=new ArrayList<Data>();
 		tempart=new Data();
 		tempchar=new String("");
 		this.auth=auth;
 		this.ent=ent;
-		type=t;
-		authsplit=auth.toLowerCase().split(" ");
+		authsplit=auth.toLowerCase().split("[ -]");
 		
 	}
 	
@@ -81,7 +79,7 @@ public class SearchHandler extends DefaultHandler {
 			      
 		if (qName.equalsIgnoreCase("article") ||  qName.equalsIgnoreCase("inproceedings") || qName.equalsIgnoreCase("incollection") || qName.equalsIgnoreCase("phdthesis") ) 
 		{
-			 if(resultFound)
+			 if(resultFound && tempart.getYear()!=null)
 			 {
 				 artlist.add(tempart);
 			 }
@@ -94,7 +92,7 @@ public class SearchHandler extends DefaultHandler {
 	    {
 	    	  if(isEntity=false)
 	    	  {
-	    		if(resultFound)
+	    		if(resultFound && tempart.getYear()!=null)
 	    		{
 	    			artlist.add(tempart);
 	    		}
@@ -109,16 +107,12 @@ public class SearchHandler extends DefaultHandler {
 	    {
 	    	  if(isEntity==false)
 	    	  {
-		    	  if(type==1)
-		    	  {
-		    		  if((tempchar.toLowerCase().equals(auth.toLowerCase()) ||(ent!=null && ent.getAuthors().contains(tempchar)))&&type==1)
+		    	  
+		    		  if((tempchar.toLowerCase().equals(auth.toLowerCase()) ||(ent!=null && ent.getAuthors().contains(tempchar))))
 			    	  {
-			    		  
 			    		  resultFound=true;
 			    	  }
-	    		  }
-		    	  else if(type==2)
-		    	  {
+	    		  
 		    		  String []temp1=tempchar.split(" ");
 		    		  int count=0;
 		    		  for(String s:authsplit)
@@ -134,9 +128,9 @@ public class SearchHandler extends DefaultHandler {
 		    		  if(count>0)
 		    		  {
 		    			  resultFound=true;
-		    			  tempart.setRefcount(count);
+		    			  tempart.setRefcount(count/tempchar.length());
 		    		  }
-		    	  }
+		    	  
 		    	  
 		    	  tempart.setAuthor(tempchar);
 	    	  }

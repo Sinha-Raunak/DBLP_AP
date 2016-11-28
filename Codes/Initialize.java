@@ -18,10 +18,14 @@ public class Initialize {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("Hi");
-		System.setProperty("jdk.xml.entityExpansionLimit", "0");
-		Initialize in=new Initialize();
+		Entity ent=new Entity();
+		//Publication pub=new Publication(ent);
+		//pub.SearchMoreThan(1000);
 		
+		Search s=new Search();
+		
+		ArrayList<Data> d=s.searchAuthorandType("Chin Chen Chang", ent,0);
+		System.out.println("Size="+d.size());
 		
 		
 	}

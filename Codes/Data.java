@@ -1,7 +1,6 @@
-
 import java.util.*;
-import java.io.*;
-public class Data implements Serializable,Comparable<Data> {
+
+public class Data  {
 	private ArrayList<String> author;
 	private String title;
 	private String pages;
@@ -9,18 +8,18 @@ public class Data implements Serializable,Comparable<Data> {
 	private String volume;
 	private String journal;
 	private String url;
-	private int refcount;
-	//TODO remove unnecessary comments
+	private float refcount;
+	
 	Data()
 	{
 		author=new ArrayList<String>();
 		title=new String("null");
 		pages=new String("null");
-		year=new String("null");
+		year=null;
 		volume=new String("null");
 		journal=new String("null");
 		url=new String("null");
-		refcount=0;
+		refcount=0f;
 	}
 	
 	public void setAuthor(String str)
@@ -68,32 +67,19 @@ public class Data implements Serializable,Comparable<Data> {
 		url=new String(str);
 	}
 	
-	public int getYear()
+	public Integer getYear()
 	{
 		return Integer.parseInt(year);
 	}
 	
-	public void setRefcount(int i)
+	public void setRefcount(float i)
 	{
 		refcount=i;
 	}
 	
-	public int compareTo(Data aa)
+	public float getRefcount()
 	{
-		//TODO do something to handle types that dont have year
-		if(this.getYear()==aa.getYear())
-		{
-			return 0;
-		}
-		else if(this.getYear()<aa.getYear())
-		{
-			return 1;
-		}
-		else
-		{
-			return -1;
-		}
-		
+		return refcount;
 	}
 	
 	

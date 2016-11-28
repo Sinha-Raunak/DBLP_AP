@@ -24,7 +24,6 @@ public class PublicationHandler extends DefaultHandler{
 	Entity ent;
 	String []authsplit;
 	
-	
 	PublicationHandler(Entity en)
 	{
 		publi=new HashMap<String,Integer>();
@@ -98,9 +97,11 @@ public class PublicationHandler extends DefaultHandler{
 	    {
 	    	  if(isEntity==false)
 	    	  {  
-	    		  insertPubli(tempchar);
-		    	  tempart.setAuthor(tempchar);
-		    	  
+	    		  if(tempchar!=null)
+	    		  {
+	    			  insertPubli(tempchar);
+	    			  tempart.setAuthor(tempchar);
+	    		  }
 	    	  }
 	    	  tempchar=new String("");
 	    	  bAuthor=false;
@@ -164,16 +165,24 @@ public class PublicationHandler extends DefaultHandler{
 	
 	public void insertPubli(String au)  //increases or add elements in a hashmap
 	{
-		wwwEntity tmp=ent.getList(au);
-		if(tmp.getAuthors().size()>0)
+		String main=ent.getMap().get(au);
+		if(main!=null)
 		{
-			String tmpauth=tmp.getAuthors().get(0);
-			Integer i=publi.get(tmpauth);
-			if(i==null)
+			Integer j=publi.get(au);
+			if(j==null)
 			{
-				i=0;
+				j=0;
 			}
-			publi.put(tmpauth, i+1);
+			publi.put(main, j+1);
+		}
+		else
+		{
+			Integer j=publi.get(au);
+			if(j==null)
+			{
+				j=0;
+			}
+			publi.put(au, j+1);
 		}
 	}
 	
