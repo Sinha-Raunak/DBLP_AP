@@ -1,3 +1,9 @@
+//***************************************
+//          Author tag
+//Raunak Sinha-2015075
+//Ishbir Walia-2015041
+//****************************************
+
 import java.util.*;
 
 import javax.xml.parsers.SAXParser;
@@ -12,6 +18,13 @@ public class Search {
 	{
 		
 		wwwEntity ent=ee.getList(auth);
+		if(ent!=null)
+		{
+			for(String s:ent.getAuthors())
+			{
+				System.out.println(s);
+			}
+		}
 		ArrayList<Data> dlist=null;
 		System.setProperty("jdk.xml.entityExpansionLimit", "0");
 		

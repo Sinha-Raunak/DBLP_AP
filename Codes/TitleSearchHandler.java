@@ -1,3 +1,9 @@
+//***************************************
+//          Author tag
+//Raunak Sinha-2015075
+//Ishbir Walia-2015041
+//****************************************
+
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -27,7 +33,7 @@ public class TitleSearchHandler extends DefaultHandler{
 		tempart=new Data();
 		tempchar=new String("");
 		this.title=titles;
-		titlesplit=title.toLowerCase().split("[ -]");
+		titlesplit=titles.toLowerCase().split("[ -]");
 		
 		
 	}
@@ -118,6 +124,7 @@ public class TitleSearchHandler extends DefaultHandler{
 	    	 
 		    	  if(tempchar.toLowerCase().equals(title.toLowerCase()))
 		    	  {
+		    		  tempart.setRefcount(1);
 		    		  resultFound=true;
 		    	  }
 		     
@@ -133,7 +140,7 @@ public class TitleSearchHandler extends DefaultHandler{
 	    				  }
 	    			  }
 	    		  }
-	    		  if(count>0)
+	    		  if(count>0 && tempart.getRefcount()==0)
 	    		  {
 	    			  resultFound=true;
 	    			  tempart.setRefcount(count/tempchar.length());

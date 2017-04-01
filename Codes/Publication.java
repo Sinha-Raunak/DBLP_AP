@@ -1,3 +1,9 @@
+//***************************************
+//          Author tag
+//Raunak Sinha-2015075
+//Ishbir Walia-2015041
+//****************************************
+
 import java.io.*;
 import java.util.*;
 import javax.xml.parsers.SAXParser;
@@ -56,6 +62,12 @@ public class Publication {
 			
 		}
 		System.out.println("The most publications is= "+i);
+		System.out.println("result size= "+auth.size());
+		
+		for(String str:auth)
+		{
+			System.out.println("From publi = "+str);
+		}
 		return auth;
 	}
 	

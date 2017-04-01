@@ -1,3 +1,9 @@
+//***************************************
+//          Author tag
+//Raunak Sinha-2015075
+//Ishbir Walia-2015041
+//****************************************
+
 import java.util.*;
 
 public class Data  {
@@ -22,14 +28,38 @@ public class Data  {
 		refcount=0f;
 	}
 	
+	public String getURl(){
+		return url;
+	}
+	
 	public void setAuthor(String str)
 	{
 		author.add(str);
 	}
-	
+	public String getJournal(){
+		return journal;
+	}
+	public String getVolume(){
+		return volume;
+	}
+	public String getPages(){
+		return pages;
+	}
+	public String getTitle(){
+		return title;
+	}
 	public String getAuthor()//returns only the first author based on which the files will be divided
 	{
 		return author.get(0);
+	}
+	public String getStringAuthors()
+	{
+		String tmp=new String("");
+		for(String str:author)
+		{
+			tmp+=str+",";
+		}
+		return tmp;
 	}
 	
 	public ArrayList<String> getAuthors()
@@ -70,6 +100,11 @@ public class Data  {
 	public Integer getYear()
 	{
 		return Integer.parseInt(year);
+	}
+	
+	public String getStringYear()
+	{
+		return year;
 	}
 	
 	public void setRefcount(float i)
